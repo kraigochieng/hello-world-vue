@@ -10,7 +10,7 @@
 
     <!--Dynamic Classes-->
     <h1>Dynamic Classes</h1>
-    <p :class="isPromoted && 'promoted'">Promoted Movie</p>
+    <p class="new" :class=" isPromoted && 'promoted' ">Promoted Movie</p>
     <p :class=" isSoldOut ? 'sold-out' : 'new' ">Sold Out</p>
     <p :class="['sold-out', 'promoted']">Sold Out Promoted Mover</p>
     <p :class="[isSoldOut ? 'sold-out' : 'new', 'promoted']">Sold Out Promoted Mover</p>
@@ -21,7 +21,6 @@
     }">Sold Out Promoted Mover</p>
     <p :class=" isSoldOut ? 'new' : 'promoted' ">{{ name }}</p>
 
-
     <!--Conditional Rendering-->
     <h1>Conditional Rendering</h1>
     <p v-if="num === 0">Num is 0</p>
@@ -31,9 +30,10 @@
     <!--List Rendering-->
     <h1>List Rendering</h1>
       <h2>Array of primitives</h2>
-      <p v-for="(name, index) in names" :key="name">
+      <p v-for="(name, index) in names" :key="index">
         {{ index + 1 }}. {{ name }}
       </p>
+      
       <h2>Array Of Objects</h2>
       <section v-for="(student, index) in students" :key="index">
         <h6>Student</h6>
@@ -86,7 +86,7 @@ export default {
       status: "underline",
       isPromoted: true,
       isSoldOut: false,
-      num: 2,
+      num: 0,
       
       names: ['Kraig', 'Ochieng', 'Omondi'],
       
