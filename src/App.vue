@@ -126,11 +126,19 @@
 
       <div>
         <label for="age">Age</label>
-        <input type="number" id="age" v-model.number.lazy="form.age">
+        <input @keyup.enter="submitForm" type="number" id="age" v-model.number.lazy="form.age">
       </div>
       <p>{{ JSON.stringify(form, null, 2) }}</p>
       <button type="submit">Submit</button>
     </form>
+
+    <!--Bonus Directives-->
+    <h1>Bonus Directives</h1>
+    <h2>v-once</h2>
+    <p v-once >{{ name }}</p>
+    <button @click="changeName">Change Name</button>
+    <h2>v-pre</h2>
+    <p v-pre >{{ name }}</p>
 </div>
 </template>
 
