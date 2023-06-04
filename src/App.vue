@@ -71,10 +71,10 @@
 
     <!--Forms-->
     <h1>Forms</h1>
-    <form @submit="submitForm">
+    <form @submit.prevent="submitForm">
       <div>
         <label for="name">Name</label>
-        <input type="text" id="name" v-model.trim="form.name">
+        <input type="text" id="name" v-model.trim.lazy="form.name">
       </div>
       <div>
         <label for="profile">Profile Summary</label>
@@ -122,6 +122,11 @@
         <label for="4-6">4-6</label>
         <input type="radio" name="experience" id="8+" value="8+" v-model="form.experience">
         <label for="8+">8+</label>
+      </div>
+
+      <div>
+        <label for="age">Age</label>
+        <input type="number" id="age" v-model.number.lazy="form.age">
       </div>
       <p>{{ JSON.stringify(form, null, 2) }}</p>
       <button type="submit">Submit</button>
@@ -178,6 +183,7 @@ export default {
         remote_work: 'no',
         skillset: [],
         experience: '',
+        age: null,
       },
     }
   },
@@ -209,8 +215,7 @@ export default {
       console.log('Event: ', event)
     },
 
-    submitForm(event) {
-      event.preventDefault()
+    submitForm() {
       console.log(this.form)
     }
   }
