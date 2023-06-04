@@ -74,11 +74,11 @@
     <form @submit="submitForm">
       <div>
         <label for="name">Name</label>
-        <input type="text" id="name" v-model="form.name">
+        <input type="text" id="name" v-model.trim="form.name">
       </div>
       <div>
         <label for="profile">Profile Summary</label>
-        <textarea id="profile" v-model="form.profile_summary"></textarea>
+        <textarea id="profile" v-model.trim="form.profile_summary"></textarea>
       </div>
       <div>
         <label for="country">Country</label>
