@@ -151,6 +151,13 @@
     <p>Current Volume: {{ volume }}</p>
     <button @click="volume -= 2">Reduce Volume</button>
     <button @click="volume += 2">Add Volume</button>
+
+    <!--Immediate and deep watchers-->
+    <h2>Immediate and Deep Watchers</h2>
+    <input type="text" v-model="movie" placeholder="Movie"/>
+    <input type="text" v-model="movieInfo.title" placeholder="Title"/>
+    <input type="text" v-model="movieInfo.actor" placeholder="Actor"/>
+    <button @click="movieList.push('Catwoman')">Add Movie</button>
 </div>
 </template>
 
@@ -230,6 +237,15 @@ export default {
 
       volume: 0,
 
+      movie: '',
+
+      movieInfo: {
+        title: '',
+        actor: '',
+      },
+
+      movieList: ['Batman', 'Superman'],
+
     }
   },
     
@@ -282,10 +298,33 @@ export default {
   },
 
   watch: {
+
     volume(newValue, oldValue) {
       if(newValue === 16 && oldValue < newValue ) {
         alert('Volume too high')
       }
+    },
+
+    movie: {
+      handler(newValue) {
+        console.log('Current Movie Name', newValue)
+      },
+      immediate: true,
+    },
+
+    movieInfo: {
+      handler(newValue) {
+        console.log('Title: ', newValue.title, ' Actor: ', newValue.actor)
+      },
+      deep:true,
+    },
+
+    movieList: {
+      handler(newList) {
+        console.log(newList)
+      },
+
+      deep: true,
     }
   }
 }
