@@ -139,6 +139,18 @@
     <button @click="changeName">Change Name</button>
     <h2>v-pre</h2>
     <p v-pre >{{ name }}</p>
+
+    <!--Computed Properties-->
+    <h1>Computed Properties</h1>
+    <p>{{ full_names }}</p>
+    <p>Computed Total: {{ total }}</p>
+    <button @click="items.push({id: 4, title: 'Pen', price: 225})">Add Item</button>
+
+    <!--Watchers-->
+    <h1>Watchers</h1>
+    <p>Current Volume: {{ volume }}</p>
+    <button @click="volume -= 2">Reduce Volume</button>
+    <button @click="volume += 2">Add Volume</button>
 </div>
 </template>
 
@@ -193,6 +205,31 @@ export default {
         experience: '',
         age: null,
       },
+
+      first_name2: 'Kraig',
+
+      last_name2: 'Ochieng',
+
+      items: [
+        {
+          id: 1,
+          title: 'TV',
+          price: 100,
+        },
+        {
+          id: 2,
+          title: 'Laptop',
+          price: 250,
+        },
+        {
+          id: 3,
+          title: 'Broom',
+          price: 300,
+        },
+      ],
+
+      volume: 0,
+
     }
   },
     
@@ -225,6 +262,30 @@ export default {
 
     submitForm() {
       console.log(this.form)
+    },
+  },
+
+  computed: {
+    full_names() {
+      return `${this.first_name2} ${this.last_name2}`
+    },
+
+    total() {
+      let total = 0
+
+      for(let i = 0; i < this.items.length; i++) {
+        total += this.items[i].price
+      }
+
+      return total
+    }
+  },
+
+  watch: {
+    volume(newValue, oldValue) {
+      if(newValue === 16 && oldValue < newValue ) {
+        alert('Volume too high')
+      }
     }
   }
 }
